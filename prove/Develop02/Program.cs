@@ -1,10 +1,63 @@
 using System;
-
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop02 World!");
+        Journal journal = new Journal();
+        bool done = false;
+        Random rand = new Random();
+        while (!done)
+        {
+            Console.WriteLine("Select an option:");
+            Console.WriteLine("1. Add new entry");
+            Console.WriteLine("2. Display journal");
+            Console.WriteLine("3. Save journal to file");
+            Console.WriteLine("4. Load journal from file");
+            Console.WriteLine("5. Exit");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                    case "1":
+                    string[] prompts = {
+                        "Who was the most interesting person I interacted with today?",
+                        "What was the best part of my day?",
+                        "How did I see the hand of the Lord in my life today?",
+                        "What was the strongest emotion I felt today?",
+                        "If I had one thing I could do over today, what would it be?"
+                    };
+                    string prompt = prompts[rand.Next(prompts.Length)];
+                    Console.WriteLine($"Prompt: {prompt}");
+                    Console.WriteLine("Enter your response:");
+                    string response = Console.ReadLine();
+                    JournalEntry entry = new JournalEntry
+                    {
+                        Prompt = prompt,
+                        Response = response,
+                        Date = DateTime.Now.ToString()
+                    };
+                    journal.AddEntry(entry);
+                    break;
+                case "2":
+                    journal.DisplayEntries();
+                    break;
+                case "3":
+                    Console.WriteLine("Enter filename to save to:");
+                    string saveFilename = Console.ReadLine();
+                    journal.SaveToFile(saveFilename);
+                    break;
+                case "4":
+                    Console.WriteLine("Enter filename to load from:");
+                    string loadFilename = Console.ReadLine();
+                    journal.LoadFromFile(loadFilename);
+                    break;
+                case "5":
+                    done = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
     }
 }
 class JournalEntry
@@ -61,86 +114,6 @@ class Journal
                     Response = fields[2]
                 };
                 entries.Add(entry);
-            }
-        }
-    }
-}
-class Program_2
-{
-    static void Main_2(string[] args)
-    {
-        Journal journal = new Journal();
-        bool done = false;
-        while (!done)
-        {
-            Console.WriteLine("Select an option:");
-            Console.WriteLine("1. Add new entry");
-            Console.WriteLine("2. Display journal");
-            Console.WriteLine("3. Save journal to file");
-            Console.WriteLine("4. Load journal from file");
-            Console.WriteLine("5. Exit");
-            string choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    Console.WriteLine("Select a prompt:");
-                    Console.WriteLine("1. Who was the most interesting person I interacted with today?");
-                    Console.WriteLine("2. What was the best part of my day?");
-                    Console.WriteLine("3. How did I see the hand of the Lord in my life today?");
-                    Console.WriteLine("4. What was the strongest emotion I felt today?");
-                    Console.WriteLine("5. If I had one thing I could do over today, what would it be?");
-                    string promptChoice = Console.ReadLine();
-                    string prompt;
-                    switch (promptChoice)
-                    {
-                        case "1":
-                            prompt = "Who was the most interesting person I interacted with today?";
-                            break;
-                        case "2":
-                            prompt = "What was the best part of my day?";
-                            break;
-                        case "3":
-                            prompt = "How did I see the hand of the Lord in my life today?";
-                            break;
-                        case "4":
-                            prompt = "What was the strongest emotion I felt today?";
-                            break;
-                        case "5":
-                            prompt = "If I had one thing I could do over today, what would it be?";
-                            break;
-                            default:
-                            Console.WriteLine("Invalid choice.");
-                            continue;
-                    }
-                    Console.WriteLine("Enter your response:");
-                    string response = Console.ReadLine();
-                    JournalEntry entry = new JournalEntry
-                    {
-                        Prompt = prompt,
-                        Response = response,
-                        Date = DateTime.Now.ToString()
-                    };
-                    journal.AddEntry(entry);
-                    break;
-                case "2":
-                    journal.DisplayEntries();
-                    break;
-                case "3":
-                    Console.WriteLine("Enter filename to save to:");
-                    string saveFilename = Console.ReadLine();
-                    journal.SaveToFile(saveFilename);
-                    break;
-                case "4":
-                    Console.WriteLine("Enter filename to load from:");
-                    string loadFilename = Console.ReadLine();
-                    journal.LoadFromFile(loadFilename);
-                    break;
-                case "5":
-                    done = true;
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice.");
-                    break;
             }
         }
     }
