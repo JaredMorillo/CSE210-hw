@@ -93,7 +93,7 @@ class Journal
         {
             foreach (JournalEntry entry in entries)
             {
-                writer.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
+                writer.WriteLine($"{entry.Date}: {entry.Prompt}; {entry.Response}");
             }
         }
     }
