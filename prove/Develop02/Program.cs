@@ -60,26 +60,27 @@ class Program
         }
     }
 }
+
+
 class JournalEntry
 {
     public string Prompt { get; set; }
     public string Response { get; set; }
     public string Date { get; set; }
 }
+
+
 class Journal
 {
     private List<JournalEntry> entries;
-
     public Journal()
     {
         entries = new List<JournalEntry>();
     }
-
     public void AddEntry(JournalEntry entry)
     {
         entries.Add(entry);
     }
-
     public void DisplayEntries()
     {
         foreach (JournalEntry entry in entries)
@@ -93,11 +94,10 @@ class Journal
         {
             foreach (JournalEntry entry in entries)
             {
-                writer.WriteLine($"{entry.Date}: {entry.Prompt}; {entry.Response}");
+                writer.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
             }
         }
     }
-
     public void LoadFromFile(string filename)
     {
         entries.Clear();
