@@ -62,12 +62,14 @@ class Program
 }
 
 
+
 class JournalEntry
 {
     public string Prompt { get; set; }
     public string Response { get; set; }
     public string Date { get; set; }
 }
+
 
 
 class Journal
@@ -85,7 +87,7 @@ class Journal
     {
         foreach (JournalEntry entry in entries)
         {
-            Console.WriteLine($"{entry.Date} - {entry.Prompt}: {entry.Response}");
+            Console.WriteLine($"{entry.Date} - {entry.Prompt}\n > {entry.Response}");
         }
     }
     public void SaveToFile(string filename)
