@@ -1,209 +1,125 @@
 using System;
 using System.Collections.Generic;
 
-public class Program
-{
-    private Scripture scripture;
-    private string userInput;
-    public void Run()
-    {
-        while (true)
-        {
-            ClearConsole();
-            DisplayScripture();
-            PromptUser();
-
-            if (userInput.ToLower() == "quit")
-                break;
-
-            HideRandomWords();
-
-            if (scripture.IsFullyHidden())
-                break;
-        }
-    }
-
-    private void ClearConsole()
-    {
-        Console.Clear();
-    }
-    private void DisplayScripture()
-    {
-        Console.WriteLine(scripture.GetReference().ToString());
-        Console.WriteLine(scripture.GetText());
-    }
-    private void PromptUser()
-    {
-        Console.WriteLine("Press Enter to continue or type 'quit' to exit:");
-        userInput = Console.ReadLine();
-    }
-    private void HideRandomWords()
-    {
-        List<Word> wordsToHide = scripture.GetNonHiddenWords();
-        Random random = new Random();
-        int index = random.Next(wordsToHide.Count);
-        scripture.HideWord(wordsToHide[index]);
-    }
-    public static void Main()
-    {
-        Program program = new Program();
-        program.scripture = new Scripture("John 3:16", "For God so loved the world...");
-        program.Run();
-    }
-}
-
-
 public class Scripture
 {
-    private Reference reference;
+    private string reference;
     private string text;
-    private List<Word> hiddenWords;
+    private List<Word> words;
     public Scripture(string reference, string text)
     {
-        this.reference = new Reference(reference);
+        this.reference = reference;
         this.text = text;
-        hiddenWords = new List<Word>();
+        this.words = InitializeWords(text);
     }
-    public Scripture(string reference, string text, List<Word> hiddenWords)
-    {
-        this.reference = new Reference(reference);
-        this.text = text;
-        this.hiddenWords = hiddenWords;
-    }
-    public Reference GetReference()
-    {
-        return reference;
-    }
-    public string GetText()
-    {
-        return text;
-    }
-    public List<Word> GetHiddenWords()
-    {
-        return hiddenWords;
-    }
-    public List<Word> GetNonHiddenWords()
-    {
-        List<Word> nonHiddenWords = new List<Word>();
-        string[] words = text.Split(' ');
 
-        foreach (string word in words)
+    public string Reference { get { return reference; } }
+    public string Text { get { return text; } }
+
+    public bool IsAllWordsHidden()
+    {
+        foreach (var word in words)
         {
-            Word currentWord = new Word(word);
-
-            if (!hiddenWords.Contains(currentWord))
-                nonHiddenWords.Add(currentWord);
-        }
-
-        return nonHiddenWords;
-    }
-    public void HideWord(Word word)
-    {
-        hiddenWords.Add(word);
-    }
-    public bool IsFullyHidden()
-    {
-        string[] words = text.Split(' ');
-
-        foreach (string word in words)
-        {
-            Word currentWord = new Word(word);
-
-            if (!hiddenWords.Contains(currentWord))
+            if (!word.IsHidden)
                 return false;
         }
-
         return true;
+    }
+    public void HideRandomWord()
+    {
+        var hiddenWords = GetHiddenWords();
+        var random = new Random();
+        int index = random.Next(hiddenWords.Count);
+        hiddenWords[index].Hide();
+    }
+    public void Display()
+    {
+        Console.Clear();
+        Console.WriteLine($"{reference}:");
+        Console.WriteLine();
+        foreach (var word in words)
+        {
+            Console.Write(word + " ");
+        }
+        Console.WriteLine();
+    }
+    private List<Word> InitializeWords(string text)
+    {
+        var words = new List<Word>();
+        var splitText = text.Split(' ');
+        foreach (var word in splitText)
+        {
+            words.Add(new Word(word));
+        }
+        return words;
+    }
+    private List<Word> GetHiddenWords()
+    {
+        var hiddenWords = new List<Word>();
+        foreach (var word in words)
+        {
+            if (word.IsHidden)
+                hiddenWords.Add(word);
+        }
+        return hiddenWords;
     }
 }
 
 
 public class Reference
 {
-    private string book;
-    private int chapter;
-    private int startVerse;
-    private int endVerse;
-
+    private string reference;
     public Reference(string reference)
     {
-        string[] parts = reference.Split(':');
-        book = parts[0];
-        string[] verseParts = parts[1].Split('-');
-        chapter = int.Parse(verseParts[0]);
-
-        if (verseParts.Length == 1)
-        {
-            startVerse = int.Parse(verseParts[1]);
-            endVerse = startVerse;
-        }
-        else
-        {
-            startVerse = int.Parse(verseParts[0]);
-            endVerse = int.Parse(verseParts[1]);
-        }
-    }
-    public Reference(string book, int chapter, int verse)
-    {
-        this.book = book;
-        this.chapter = chapter;
-        startVerse = verse;
-        endVerse = verse;
-    }
-    public Reference(string book, int chapter, int startVerse, int endVerse)
-    {
-        this.book = book;
-        this.chapter = chapter;
-        this.startVerse = startVerse;
-        this.endVerse = endVerse;
-    }
-    public string GetBook()
-    {
-        return book;
-    }
-    public int GetChapter()
-    {
-        return chapter;
-    }
-    public int GetStartVerse()
-    {
-        return startVerse;
-    }
-    public int GetEndVerse()
-    {
-        return endVerse;
+        this.reference = reference;
     }
     public override string ToString()
     {
-        if (startVerse == endVerse)
-            return $"{book} {chapter}:{startVerse}";
-        else
-            return $"{book} {chapter}:{startVerse}-{endVerse}";
+        return reference;
     }
 }
 
 
 public class Word
 {
-    private string text;
-    public Word(string text)
+    private string word;
+    private bool isHidden;
+    public Word(string word)
     {
-        this.text = text;
+        this.word = word;
+        this.isHidden = false;
     }
-    public string GetText()
+    public bool IsHidden { get { return isHidden; } }
+    public void Hide()
     {
-        return text;
+        isHidden = true;
     }
-    public override bool Equals(object obj)
+    public override string ToString()
     {
-        if (obj == null || GetType() != obj.GetType())
-            return false;
+        if (isHidden)
+            return new string('*', word.Length);
+        return word;
+    }
+}
 
-        Word otherWord = (Word)obj;
-        return text == otherWord.text;
-    }
-    public override int GetHashCode()
+
+public class Program
+{
+    public static void Main()
     {
-        return text.GetHashCode();
+        Scripture scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
+
+        while (!scripture.IsAllWordsHidden())
+        {
+            scripture.Display();
+            Console.WriteLine();
+            Console.WriteLine("Press Enter to hide a word or type 'quit' to exit.");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "quit")
+                break;
+
+            scripture.HideRandomWord();
+        }
     }
 }
