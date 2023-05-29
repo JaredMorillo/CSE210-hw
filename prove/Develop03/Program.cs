@@ -1,6 +1,27 @@
 using System;
 using System.Collections.Generic;
 
+public class Program
+{
+    public static void Main()
+    {
+        Scripture scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
+
+        while (!scripture.IsAllWordsHidden())
+        {
+            scripture.Display();
+            Console.WriteLine();
+            Console.WriteLine("Press Enter to hide a word or type 'quit' to exit.");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "quit")
+                break;
+
+            scripture.HideRandomWord();
+        }
+    }
+}
+
 public class Scripture
 {
     private string reference;
@@ -99,27 +120,5 @@ public class Word
         if (isHidden)
             return new string('*', word.Length);
         return word;
-    }
-}
-
-
-public class Program
-{
-    public static void Main()
-    {
-        Scripture scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
-
-        while (!scripture.IsAllWordsHidden())
-        {
-            scripture.Display();
-            Console.WriteLine();
-            Console.WriteLine("Press Enter to hide a word or type 'quit' to exit.");
-            string input = Console.ReadLine();
-
-            if (input.ToLower() == "quit")
-                break;
-
-            scripture.HideRandomWord();
-        }
     }
 }
