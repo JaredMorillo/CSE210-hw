@@ -1,0 +1,20 @@
++------------------+        +----------------------------------------+
+|     Program      |        |                 Journal                |
++------------------+        +----------------------------------------+
+| - prompts: array |        | - entries: array                       |
+|                  |        |                                        |
+| + run(): void    |        | + addEntry(): void                     |
+|                  |        | + displayJournal(): void               |
+|                  |        | + saveToFile(filename: string): void   |
+|                  |        | + loadFromFile(filename: string): void |
++--------^---------+        +--------^-------------------------------+
+         |                           |
+         |                           |
+         |                           |
++--------+----------+       +--------+--------+
+|      Entry        |       |     Prompt      |
++-------------------+       +-----------------+
+| - date: string    |       | - text: string  |
+| - prompt: string  |       +-----------------+
+| - response: string|
++-------------------+
