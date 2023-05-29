@@ -1,0 +1,51 @@
+Program                        
+
+- scripture: Scripture                              
+- userInput: string                                 
+
++ Run(): void                                      
+- DisplayScripture(): void                         
+- HideRandomWords(): void                          
+- PromptUser(): void                               
+
+
+
+Scripture                        
+
+- reference: Reference                              
+- text: string                                     
+- hiddenWords: List<Word>                          
+
++ Scripture(ref: string, txt: string): void         
++ Scripture(ref: string, txt: string, hidden: List<Word>): void 
++ GetReference(): Reference                        
++ GetText(): string                               
++ GetHiddenWords(): List<Word>                      
++ HideWord(word: Word): void                        
++ IsFullyHidden(): bool                             
+
+
+
+Reference                        
+
+- book: string                                     
+- chapter: int                                     
+- startVerse: int                                  
+- endVerse: int                                    
+
++ Reference(ref: string): void                      
++ Reference(book: string, chapter: int, verse: int): void 
++ Reference(book: string, chapter: int, startVerse: int, endVerse: int): void 
++ GetBook(): string                               
++ GetChapter(): int                                
++ GetStartVerse(): int                             
++ GetEndVerse(): int                               
++ ToString(): string                               
+
+
+
+Word                        
+
+- text: string                                     
++ Word(txt: string): void                          
++ GetText(): string                                
