@@ -5,7 +5,6 @@ public class Program
 {
     private Scripture scripture;
     private string userInput;
-
     public void Run()
     {
         while (true)
@@ -28,19 +27,16 @@ public class Program
     {
         Console.Clear();
     }
-
     private void DisplayScripture()
     {
         Console.WriteLine(scripture.GetReference().ToString());
         Console.WriteLine(scripture.GetText());
     }
-
     private void PromptUser()
     {
         Console.WriteLine("Press Enter to continue or type 'quit' to exit:");
         userInput = Console.ReadLine();
     }
-
     private void HideRandomWords()
     {
         List<Word> wordsToHide = scripture.GetNonHiddenWords();
@@ -48,51 +44,44 @@ public class Program
         int index = random.Next(wordsToHide.Count);
         scripture.HideWord(wordsToHide[index]);
     }
-
     public static void Main()
     {
-        // Example usage
         Program program = new Program();
         program.scripture = new Scripture("John 3:16", "For God so loved the world...");
         program.Run();
     }
 }
 
+
 public class Scripture
 {
     private Reference reference;
     private string text;
     private List<Word> hiddenWords;
-
     public Scripture(string reference, string text)
     {
         this.reference = new Reference(reference);
         this.text = text;
         hiddenWords = new List<Word>();
     }
-
     public Scripture(string reference, string text, List<Word> hiddenWords)
     {
         this.reference = new Reference(reference);
         this.text = text;
         this.hiddenWords = hiddenWords;
     }
-
     public Reference GetReference()
     {
         return reference;
     }
-
     public string GetText()
     {
         return text;
     }
-
     public List<Word> GetHiddenWords()
     {
         return hiddenWords;
     }
-
     public List<Word> GetNonHiddenWords()
     {
         List<Word> nonHiddenWords = new List<Word>();
@@ -108,12 +97,10 @@ public class Scripture
 
         return nonHiddenWords;
     }
-
     public void HideWord(Word word)
     {
         hiddenWords.Add(word);
     }
-
     public bool IsFullyHidden()
     {
         string[] words = text.Split(' ');
@@ -129,6 +116,7 @@ public class Scripture
         return true;
     }
 }
+
 
 public class Reference
 {
@@ -155,7 +143,6 @@ public class Reference
             endVerse = int.Parse(verseParts[1]);
         }
     }
-
     public Reference(string book, int chapter, int verse)
     {
         this.book = book;
@@ -163,7 +150,6 @@ public class Reference
         startVerse = verse;
         endVerse = verse;
     }
-
     public Reference(string book, int chapter, int startVerse, int endVerse)
     {
         this.book = book;
@@ -171,27 +157,22 @@ public class Reference
         this.startVerse = startVerse;
         this.endVerse = endVerse;
     }
-
     public string GetBook()
     {
         return book;
     }
-
     public int GetChapter()
     {
         return chapter;
     }
-
     public int GetStartVerse()
     {
         return startVerse;
     }
-
     public int GetEndVerse()
     {
         return endVerse;
     }
-
     public override string ToString()
     {
         if (startVerse == endVerse)
@@ -201,20 +182,18 @@ public class Reference
     }
 }
 
+
 public class Word
 {
     private string text;
-
     public Word(string text)
     {
         this.text = text;
     }
-
     public string GetText()
     {
         return text;
     }
-
     public override bool Equals(object obj)
     {
         if (obj == null || GetType() != obj.GetType())
@@ -223,7 +202,6 @@ public class Word
         Word otherWord = (Word)obj;
         return text == otherWord.text;
     }
-
     public override int GetHashCode()
     {
         return text.GetHashCode();
