@@ -1,0 +1,48 @@
++-----------------------------------+
+|         Choose an Activity        |
++-----------------------------------+
+| - name: String                    |
+| - description: String             |
+| - duration: int                   |
++-----------------------------------+
+| + start(): void                   |
+| + end(): void                     |
+| + showSpinner(): void             |
+| + showCountdown(seconds: int):void|
++-----------------------------------+
+         ^
+         |
+         |
++-----------------------------------+
+|          BreathingActivity        |
++-----------------------------------+
+| - prompts: String[]               |
++-----------------------------------+
+| + start(): void                   |
+| + showBreathingMessages(): void   |
++-----------------------------------+
+               ^
+               |
+               |
++-----------------------------------+
+|          ReflectionActivity       |
++-----------------------------------+
+| - prompts: String[]               |
+| - reflectionQuestions: String[]   |
++-----------------------------------+
+| + start(): void                   |
+| + showRandomPrompt(): void        |
+| + showReflectionQuestions(): void |
++-----------------------------------+
+                 ^
+                 |
+                 |
++-----------------------------------+
+|          ListingActivity          |
++-----------------------------------+
+| - prompts: String[]               |
++-----------------------------------+
+| + start(): void                   |
+| + showRandomPrompt(): void        |
+| + listItems(): int                |
++-----------------------------------+
