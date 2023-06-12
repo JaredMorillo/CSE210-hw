@@ -84,7 +84,6 @@ class Program
             Thread.Sleep(100);
         }
     }
-    
     static void StartActivity(Activity activity)
     {
         activity.Start();
