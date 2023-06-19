@@ -1,0 +1,26 @@
+<mxfile host="app.diagrams.net" modified="2023-06-19T00:00:00Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" etag="oFv6ODQpt9zezOSn0qXl" version="13.9.19" type="device">
+  <diagram name="Page-1" id="pNt3I_zXphZT2EUxUfuW">
+    <mxGraphModel dx="1140" dy="585" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="150" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Goal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="- id: int&#xa;- title: String&#xa;- completed: boolean&#xa;- timesCompleted: int&#xa;- points: int&#xa;+ Goal(title: String)&#xa;+ getId(): int&#xa;+ getTitle(): String&#xa;+ isCompleted(): boolean&#xa;+ getTimesCompleted(): int&#xa;+ getPoints(): int&#xa;+ setCompleted(completed: boolean): void&#xa;+ setTimesCompleted(timesCompleted: int): void" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="7">
+          <mxGeometry x="20" y="10" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="10" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" vertex="1" parent="7">
+          <mxGeometry width="0" height="0" as="geometry" />
+        </mxCell>
+        <mxCell id="11" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="150" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry width="0" height="0" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="SimpleGoal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="
