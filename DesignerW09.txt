@@ -1,0 +1,46 @@
+@startuml
+
+class Goal {
+  - id: int
+  - title: String
+  - completed: boolean
+  - timesCompleted: int
+  - points: int
+  + Goal(title: String)
+  + getId(): int
+  + getTitle(): String
+  + isCompleted(): boolean
+  + getTimesCompleted(): int
+  + getPoints(): int
+  + setCompleted(completed: boolean): void
+  + setTimesCompleted(timesCompleted: int): void
+}
+
+class SimpleGoal {
+  - rewardPoints: int
+  + SimpleGoal(title: String, rewardPoints: int)
+  + getRewardPoints(): int
+}
+
+class EternalGoal {
+  - rewardPoints: int
+  + EternalGoal(title: String, rewardPoints: int)
+  + getRewardPoints(): int
+}
+
+class ChecklistGoal {
+  - rewardPoints: int
+  - requiredTimes: int
+  - bonusPoints: int
+  + ChecklistGoal(title: String, rewardPoints: int, requiredTimes: int, bonusPoints: int)
+  + getRewardPoints(): int
+  + getRequiredTimes(): int
+  + getBonusPoints(): int
+  + setBonusPoints(bonusPoints: int): void
+}
+
+Goal <|-- SimpleGoal
+Goal <|-- EternalGoal
+Goal <|-- ChecklistGoal
+
+@enduml
