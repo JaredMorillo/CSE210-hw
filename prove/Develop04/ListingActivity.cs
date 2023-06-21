@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class ListingActivity : Activity
 {
     private readonly Random random;
@@ -22,6 +24,16 @@ public class ListingActivity : Activity
         ShowListingInstructions();
         PerformListingActivity();
         ShowEndingMessage();
+    }
+
+    private void ShowEndingMessage()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ShowStartingMessage()
+    {
+        throw new NotImplementedException();
     }
 
     private void ShowListingInstructions()

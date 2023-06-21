@@ -37,6 +37,16 @@ public class ReflectionActivity : Activity
         ShowEndingMessage();
     }
 
+    private void ShowEndingMessage()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ShowStartingMessage()
+    {
+        throw new NotImplementedException();
+    }
+
     private void ShowReflectionInstructions()
     {
         Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience.");
@@ -73,7 +83,7 @@ public class ReflectionActivity : Activity
         return questions[index];
     }
 
-    private void ShowSpinner()
+    private new void ShowSpinner()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -91,5 +101,10 @@ public class ReflectionActivity : Activity
             Console.Write("\b");
         }
         Console.WriteLine();
+    }
+
+    private void Pause(double v)
+    {
+        throw new NotImplementedException();
     }
 }

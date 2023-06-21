@@ -8,6 +8,16 @@ public class BreathingActivity : Activity
         ShowEndingMessage();
     }
 
+    private void ShowEndingMessage()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ShowStartingMessage()
+    {
+        throw new NotImplementedException();
+    }
+
     private void ShowBreathingInstructions()
     {
         Console.WriteLine("This activity will help you relax by walking you through breathing in and out slowly.");
