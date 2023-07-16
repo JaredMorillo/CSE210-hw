@@ -8,8 +8,8 @@ class Program
         Address address2 = new Address("456 Elm St", "Townsville", "Stateville", "Countryland");
         Address address3 = new Address("789 Oak St", "Villageland", "Stateville", "Countryland");
 
-        Lecture lecture = new Lecture("Interesting Lecture", "An informative lecture about a fascinating topic.", new DateTime(2023, 7, 20), new TimeSpan(18, 30, 0), address1, "John Doe", 100);
-        Reception reception = new Reception("Networking Reception", "Join us for a networking event.", new DateTime(2023, 7, 22), new TimeSpan(19, 0, 0), address2, "rsvp@example.com");
+        Lecture lecture = new Lecture("Interesting Lecture", "Harry Potter and The Lord of the Rings.", new DateTime(2023, 7, 20), new TimeSpan(18, 30, 0), address1, "Jared Morillo", 100);
+        Reception reception = new Reception("Networking Reception", "Join us for a networking event.", new DateTime(2023, 7, 22), new TimeSpan(19, 0, 0), address2, "jm45@gmail.com");
         OutdoorGathering outdoorGathering = new OutdoorGathering("Summer Picnic", "Enjoy a fun-filled picnic in the park.", new DateTime(2023, 7, 25), new TimeSpan(12, 0, 0), address3, "Sunny skies expected!");
 
         Console.WriteLine("=== Standard Details ===");
